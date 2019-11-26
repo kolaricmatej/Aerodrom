@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>#{p['registracija.naslov']}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet name="css/default.css" />
+        <h:outputStylesheet name="css/cssLayout.css" />
+    </h:head>
+    <f:view locale="#{lokalizacija.locale}">
+    <h:body>
+        <h:form>
+            <p:panel>
+            <p:messages showIcon="false" showDetail="true" showSummary="false" autoUpdate="true" closable="true" />
+            <h:panelGrid columns="2"> 
+                <h:outputLabel value="#{p['korisnik.korisnickoIme']}"/>
+                <p:inputText value="#{registracijaKorisnika.korisnickoIme}" required="true">
+                    <p:ajax event="blur" listener="#{registracijaKorisnika.provjeraImena(korisnickoIme)}"/>
+                </p:inputText>
+
+                <h:outputLabel value="#{p['korisnik.lozinka']}"/>
+                <p:password value="#{registracijaKorisnika.lozinka}" required="true"/>
+
+                <h:outputLabel value="#{p['korisnik.ponovljena']}"/>
+                <p:password value="#{registracijaKorisnika.ponovljena}" required="ture"/>
+
+                <h:outputLabel value="#{p['korisnik.ime']}"/>
+                <p:inputText value="#{registracijaKorisnika.ime}" required="true"/>
+
+                <h:outputLabel value="#{p['korisnik.prezime']}"/>
+                <p:inputText value="#{registracijaKorisnika.prezime}" required="true"/>
+                <h:commandButton value="#{p['registracija.registracija']}" action="#{registracijaKorisnika.registracija()}" class="gumb"/>
+
+            </h:panelGrid>
+            </p:panel>
+        </h:form>
+    </h:body>
+    </f:view>
+</html>

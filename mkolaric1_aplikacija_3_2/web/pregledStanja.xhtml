@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Upravljanje statusima</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet name="css/default.css" />
+        <h:outputStylesheet name="css/cssLayout.css" />
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:panelGrid columns="1" style="max-width: 20%">
+            <h:commandButton class="gumb" value="Autentikacija" action="#{pregledStanja.autentikacijaKorisnika()}">
+                         <p:ajax event="click" update="statusNaredbeP statusNaredbeG"/>
+                    </h:commandButton>
+            </p:panelGrid>
+            <h:panelGrid columns="1">
+                <h:panelGroup>
+                    <h:commandButton class="gumb" value="Posluzitelj kreni" action="#{pregledStanja.kreniPosluzitelj()}">
+                        <p:ajax event="click" update="statusNaredbeP"/>
+                    </h:commandButton>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <h:commandButton class="gumb" value="Posluzitelj pauza" action="#{pregledStanja.pauzaPosluzitelj()}">
+                        <p:ajax event="click" update="statusNaredbeP" />
+                    </h:commandButton>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <h:commandButton class="gumb" value="Posluzitelj pasivno" action="#{pregledStanja.pasivnoPosluzitelj()}">
+                        <p:ajax event="click" update="statusNaredbeP" />
+                    </h:commandButton>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <h:commandButton class="gumb" value="Posluzitelj aktivno" action="#{pregledStanja.aktivnoPosluzitelj()}">
+                        <p:ajax event="click" update="statusNaredbeP" />
+                    </h:commandButton>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <h:commandButton class="gumb" value="Posluzitelj stani" action="#{pregledStanja.staniPosluzitelj()}">
+                        <p:ajax event="click" update="statusNaredbeP" />
+                    </h:commandButton>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <h:commandButton class="gumb" value="Posluzitelj stanje" action="#{pregledStanja.stanjePosluzitelj()}">
+                        <p:ajax event="click" update="statusNaredbeP" />
+                    </h:commandButton>
+                </h:panelGroup>
+                <h:outputText class="statusniTekst" id="statusNaredbeP" value="Status posluzitelja - #{pregledStanja.provedenaAkcija}"/>
+            </h:panelGrid>
+            <br/>
+            <h:panelGrid columns="1">             
+                <h:panelGroup>
+                    <h:commandButton class="gumb" value="Grupa dodaj" action="#{pregledStanja.dodajGrupa()}">
+                        <p:ajax event="click" update="statusNaredbeG"/>
+                    </h:commandButton>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <h:commandButton class="gumb" value="Grupa prekid" action="#{pregledStanja.prekidGrupa()}">
+                        <p:ajax event="click" update="statusNaredbeG"/>
+                    </h:commandButton>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <h:commandButton class="gumb" value="Grupa kreni" action="#{pregledStanja.kreniGrupa()}">
+                        <p:ajax event="click" update="statusNaredbeG"/>
+                    </h:commandButton>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <h:commandButton class="gumb" value="Grupa pauza" action="#{pregledStanja.pauzaGrupa()}">
+                        <p:ajax event="click" update="statusNaredbeG"/>
+                    </h:commandButton>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <h:commandButton class="gumb" value="Grupa stanje" action="#{pregledStanja.stanjeGrupa()}">
+                        <p:ajax event="click" update="statusNaredbeG"/>
+                    </h:commandButton>
+                </h:panelGroup>
+                <h:outputText class="statusniTekst" id="statusNaredbeG" value="Status grupe - #{pregledStanja.provedenaAkcija2}"/>
+            </h:panelGrid>
+
+        </h:form>
+    </h:body>
+</html>

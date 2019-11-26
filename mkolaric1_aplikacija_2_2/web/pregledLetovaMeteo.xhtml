@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>#{p['meteo.naslov']}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet name="css/default.css" />
+        <h:outputStylesheet name="css/cssLayout.css" />
+       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvsy9nEN87UVFC5W3jGyoQPr--UFh28AY"  type="text/javascript"></script>
+    </h:head>
+    <f:view locale="#{lokalizacija.locale}" >
+        <h:body>
+            <h:form id="forma">
+                <p:panelGrid columns="1">
+                    <h:outputLabel value="#{p['meteo.icao']}"/>
+                    <p:inputText value="#{pregledLetovaUzMeteo.icao}"/>
+                    <h:commandButton value="#{p['meteo.dodaj']}" action="#{pregledLetovaUzMeteo.dohvatiAerodromIzAirports()}" class="gumb"/>
+                </p:panelGrid>
+                <p:dataTable id="tablicaAvion" value="#{pregledLetovaUzMeteo.listaAerodroma}" selectionMode="single" selection="#{pregledLetovaUzMeteo.odabraniAerodrom}" rowKey="#{let.icao}" var="let" paginator="true" rows="10" 
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                             currentPageReportTemplate="#{p['interval.ukupno']}">
+
+                    <p:column headerText="ICAO">
+                        <h:outputText value=" #{let.icao}"/>
+                    </p:column>
+                    <p:column headerText="#{p['interval.naziv']}">
+                        <h:outputText value=" #{let.naziv}"/>
+                    </p:column>
+                    <p:column headerText="#{p['interval.drzava']}">
+                        <h:outputText value=" #{let.drzava}"/>
+                    </p:column>
+                    <p:column headerText="#{p['interval.lokacija']}">
+                        <h:outputText value=" #{let.lokacija.latitude} #{let.lokacija.longitude} "/>
+                    </p:column>
+                </p:dataTable>
+                <h:panelGrid columns="1">
+                <h:commandButton value="#{p['mapa.gumb']}" class="gumb">
+                    <f:ajax event="click" render="mapa" execute="tablicaAvion"/>
+                </h:commandButton>
+                </h:panelGrid>    
+                <p:gmap id="mapa" center="#{pregledLetovaUzMeteo.odabraniAerodrom.lokacija.longitude},#{pregledLetovaUzMeteo.odabraniAerodrom.lokacija.latitude}" zoom="15" type="HYBRID" style="width:100%;height:250px"/>
+                <p:panelGrid columns="4">
+                    <h:commandButton value="#{p['meteo.obrisi']}" action="#{pregledLetovaUzMeteo.obrisiAerodromIzListe()}" class="gumb"/>
+                    <h:commandButton value="#{p['meteo.aktiviraj']}" action="#{pregledLetovaUzMeteo.kreniGrupa()}" class="gumb"/>
+                    <h:commandButton value="#{p['meteo.blokiraj']}" action="#{pregledLetovaUzMeteo.pauzaGrupa()}" class="gumb"/>
+                    <h:commandButton value="#{p['meteo.stanje']}" action="#{pregledLetovaUzMeteo.stanjeGrupa()}" class="gumb"/>
+                </p:panelGrid>
+                <h:outputText value="#{pregledLetovaUzMeteo.provedenaAkcija2}"/><br/>
+                
+                <p:commandButton process="tablicaAvion" update="forma:forma1" value="#{p['meteo.prikazi']}" oncomplete="PF('mp').show()"/>
+
+                <p:dialog header="#{p['meteo.prikazi']}" widgetVar="mp" modal="true" minHeight="80" minWidth="80" showEffect="fade" hideEffect="fade" resizable="fade">
+                    <p:outputPanel id="forma1" style="text-align:center;">
+                        <p:panelGrid columns="2" rendered="#{not empty pregledLetovaUzMeteo.odabraniAerodrom}" columnClasses="label,value">
+                            <h:outputText value="#{p['meteo.temperatura']}"/>
+                            <h:outputText value="#{pregledLetovaUzMeteo.meteo.temperatureValue}"/>
+                            <h:outputText value="#{p['meteo.vlaznost']}"/>
+                            <h:outputText value="#{pregledLetovaUzMeteo.meteo.humidityValue}"/>
+                            <h:outputText value="#{p['meteo.tlak']}"/>
+                            <h:outputText value="#{pregledLetovaUzMeteo.meteo.pressureValue}"/>
+                            <h:outputText value="#{p['meteo.brzinaVjetra']}"/>
+                            <h:outputText value="#{pregledLetovaUzMeteo.meteo.windSpeedValue}"/>
+                            <h:outputText value="#{p['meteo.vidljivost']}"/>
+                            <h:outputText value="#{pregledLetovaUzMeteo.meteo.visibility}"/>
+                            <h:outputText value="#{p['meteo.opis']}"/>
+                            <h:outputText value="#{pregledLetovaUzMeteo.meteo.weatherValue}"/>
+                        </p:panelGrid>
+                    </p:outputPanel>
+                </p:dialog>
+            </h:form>
+        </h:body>
+    </f:view>
+</html>

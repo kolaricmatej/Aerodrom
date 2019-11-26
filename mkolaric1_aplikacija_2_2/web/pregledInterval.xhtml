@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>#{p['interval.naslov']}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet name="css/default.css" />
+        <h:outputStylesheet name="css/cssLayout.css" />
+    </h:head>
+    <f:view locale="#{lokalizacija.locale}">
+        <h:body>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:panelGroup>
+                        <h:outputLabel  value="#{p['interval.odVremena']} "/>
+                        <p:inputText id="odV" value="#{pregledAerodromaInterval.odVremena}"/>
+                        <h:outputLabel value="#{p['interval.doVremena']} "/>
+                        <p:inputText id="doV"  value="#{pregledAerodromaInterval.doVremena}"/>
+                    </h:panelGroup>
+                    <h:commandButton id="ucitaj" value="#{p['interval.preuzmiLetove']}" action="#{pregledAerodromaInterval.preuzmiLetove()}" class="gumb"/>
+                </h:panelGrid>
+                <p:dataTable id="tablicaAvion" value="#{pregledAerodromaInterval.listaAerodroma}" selectionMode="single" selection="#{pregledAerodromaInterval.odabraniAerodrom}" rowKey="#{let.icao}" var="let" paginator="true" rows="10" 
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                             currentPageReportTemplate="#{p['interval.ukupno']}">
+                    <p:column headerText="ICAO">
+                        <h:outputText value=" #{let.icao}"/>
+                    </p:column>
+                    <p:column headerText="#{p['interval.naziv']}">
+                        <h:outputText value=" #{let.naziv}"/>
+                    </p:column>
+                    <p:column headerText="#{p['interval.drzava']}">
+                        <h:outputText value=" #{let.drzava}"/>
+                    </p:column>
+                    <p:column headerText="#{p['interval.lokacija']}">
+                        <h:outputText value=" #{let.lokacija.latitude} #{let.lokacija.longitude} "/>
+                    </p:column>
+                </p:dataTable>
+                <h2 style="text-align: center">#{p['udaljenost.listaLetova']}</h2>
+                <p:dataTable value="#{pregledAerodromaInterval.listaLetova}" var="letovi" paginator="true" rows="10" selectionMode="single" selection="#{pregledAerodromaInterval.odabraniLet}" rowKey="#{letovi.icao24}"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                             currentPageReportTemplate="#{p['interval.ukupno']}">
+                    <p:column headerText="#{p['interval.poljetanje']}">
+                        <h:outputText value="#{letovi.firstSeen*1000}">
+                            <f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="#{p['interval.sljetanje']}">
+                        <h:outputText value="#{letovi.lastSeen*1000}">
+                            <f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="#{p['udaljenost.nazivOdredisnog']}">
+                        <h:outputText value=" #{letovi.estArrivalAirport}"/>
+                    </p:column>
+                </p:dataTable>
+                <h:commandButton value="#{p['interval.preuzmiLetove']}" action="#{pregledAerodromaInterval.preuzmiAvione()}" class="gumb"/>
+                <h2 style="text-align: center">#{p['interval.avion']}</h2>
+                <p:dataTable value="#{pregledAerodromaInterval.listaAviona}" var="avion" paginator="true" rows="10"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                             currentPageReportTemplate="#{p['interval.ukupno']}">
+                    <p:column headerText="#{p['interval.poljetanje']}">
+                        <h:outputText value="#{avion.firstSeen*1000}">
+                            <f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="#{p['interval.sljetanje']}">
+                        <h:outputText value="#{avion.lastSeen*1000}">
+                            <f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="#{p['udaljenost.nazivOdredisnog']}">
+                        <h:outputText value=" #{avion.estArrivalAirport}"/>
+                    </p:column>
+
+                </p:dataTable>
+            </h:form>
+        </h:body>
+    </f:view>
+</html>

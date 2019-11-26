@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Pregled korisnika</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet name="css/default.css" />
+        <h:outputStylesheet name="css/cssLayout.css" />
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:dataTable value="#{pregledKorisnika.listaKoriniska}" var="korisnik" paginator="true" rows="#{pregledKorisnika.brojZapisa}" id="tablica1" 
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                         currentPageReportTemplate="Ukupno: {totalRecords} zapisa">
+                <p:column>
+                    <f:facet name="header">Korisničko ime</f:facet>
+                        #{korisnik.korisnickoIme} 
+                </p:column>
+                <p:column>
+                    <f:facet name="header">Lozinka</f:facet>
+                        #{korisnik.lozinka}
+                </p:column>
+                <p:column>
+                    <f:facet name="header">Ime</f:facet>
+                        #{korisnik.ime}
+                </p:column>
+                <p:column>
+                    <f:facet name="header">Prezime</f:facet>
+                        #{korisnik.prezime}
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </h:body>
+</html>

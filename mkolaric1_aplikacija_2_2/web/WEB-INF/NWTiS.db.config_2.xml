@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>NWTIS konfiguracija - MySQL</comment>
+<entry key="server.database">jdbc:mysql://127.0.0.1/</entry>
+<entry key="admin.username">nwtis_admin</entry>
+<entry key="admin.password">nwtis_foi</entry>
+<entry key="admin.database">mysql</entry>
+<entry key="user.username">root</entry>
+<entry key="user.password"></entry>
+<entry key="user.database">nwtis_mkolaric1_bp_1</entry>
+<entry key="jdbc.mysql">com.mysql.jdbc.Driver</entry>
+<entry key="jdbc.derby">org.apache.derby.jdbc.ClientDriver</entry>
+<entry key="LocationIQ.token">5d7bf205cc89b1</entry>
+<entry key="OpenWeatherMap.apikey">823dc8d51ef1bede5bd4fa46082826c5</entry>
+<entry key="OpenSkyNetwork.korisnik">mkolaric1</entry>
+<entry key="OpenSkyNetwork.lozinka">18575544</entry>
+<entry key="preuzimanje.pocetak">48</entry>
+<entry key="preuzimanje.ciklus">1</entry>
+<entry key="preuzimanje.trajanje">12</entry>
+<entry key="korisnik.brojRedaka">7</entry>
+<entry key="dnevnik.brojRedaka">10</entry>
+<entry key="datoteka.nadzora">nadzor.json</entry>
+<entry key="korisnik.ime">mkolaric1</entry>
+<entry key="korisnik.lozinka">du79me32</entry>
+<entry key="korisnickoIme">pero</entry>
+<entry key="korisnickaLozinka">123456</entry>
+<entry key="port">8003</entry>
+</properties>

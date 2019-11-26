@@ -1,0 +1,80 @@
+body{
+    background-color: gainsboro;
+}
+h1{
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    color: #0b2d6b;
+    text-align: center;
+}
+label{
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 15px;
+    color: #0b2d6b;
+}
+input{
+    border-style: none;
+    padding-top:5px;
+    padding-bottom: 5px;
+    padding-left:1px;
+    padding-right: 1px;
+    margin: 10px;
+    border-radius: 2px;
+}
+.unosAerodroma{
+    width:50%;   
+    text-align: right;
+}
+.inputAerodroma{
+    width: 35%;
+}
+.izbor{
+    width: 50%;
+}
+.status{
+    width:100%;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 15px;
+    color: red;
+}
+.gumb{
+    border-radius: 2px;
+    border-style: none;
+    padding: 3px;
+    margin: 1px;
+    color:white;
+    width: 100%;
+    background-color: #DAA520;
+}
+.selectMulti{
+    width:100%;
+    border-radius: 2px;
+    border-style: none;
+    padding: 2px;
+}
+.tablica{ 
+    align-self: center;
+    align-content: center;
+    width: 100%;
+    border-collapse:collapse;
+    font-family: Verdana, Geneva, sans-serif;
+    border-style: none;
+    color:#0b2d6b;
+}
+
+.tablica-header{
+    text-align:center;
+    background:#82a9b1;
+    border-bottom:2px solid #0b2d6b;
+    padding:10px;
+    color:black;
+}
+
+.tablica-neparni{
+    text-align:left;
+    background:#FFFFFFF;
+}
+
+.tablica-parni{
+    text-align:left;
+    background:#F9F9F9;
+}
